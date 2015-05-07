@@ -1,0 +1,24 @@
+<h2 class="page-title">Personnel Management</h2>
+
+<div>
+<table width="100%" border="1">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Title</th>
+		<th>Department</th>
+		<th>Wage</th>
+		<th></th>
+	</td>
+  <tr ng-repeat="x in names">
+	<td>{{ x.Imp_ID }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Title }}</td>
+	<td>{{ x.Department }}</td>
+	<td>{{ x.Wage }}</td>
+	<td><a href="#/personnel/{{ x.Imp_ID }}">Edit</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+<a href="#/personnel-create">Create New Personnel</a>

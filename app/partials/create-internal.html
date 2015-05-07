@@ -1,0 +1,20 @@
+<div>
+	<h1 class="page-title">View Internal News</h1>
+	<div>
+	<form ng-submit="submit()">
+		<label for="subject">Subject</label>
+		<input type="text" id="subject" ng-model="memo.subject"
+		ng-model-options="{ getterSetter: true }"/>
+		
+		<br />
+		
+		<label for="message">Message</label><br />
+		<textarea id="message" ng-model="memo.text"
+		ng-model-options="{ getterSetter: true }"></textarea>
+		
+		<br />
+
+		<input id="submit" type="submit" value="Submit"/>
+		
+	</form
+</div>

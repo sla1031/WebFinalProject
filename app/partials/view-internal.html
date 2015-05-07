@@ -1,0 +1,30 @@
+<div>
+	<h1 class="page-title">Edit Internal News</h1>
+	<div>
+	<form ng-submit="submit()">
+		<label for="user">User</label>
+		<span  id="user" ng-bind="user"></span>
+		
+		<br />
+		
+		<label for="datePublished">Date Published</label>
+		<span  id="datePublished" ng-bind="datePublished"></span>
+		
+		<br />
+		
+		<label for="subject">Subject</label>
+		<input type="text" id="subject" ng-model="memo.subject"
+		ng-model-options="{ getterSetter: true }"/>
+		
+		<br />
+		
+		<label for="message">Message</label><br />
+		<textarea id="message" ng-model="memo.text"
+		ng-model-options="{ getterSetter: true }"></textarea>
+		
+		<br />
+
+		<input id="submit" type="submit" value="Submit"/>
+		
+	</form
+</div>

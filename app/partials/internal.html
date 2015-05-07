@@ -1,0 +1,22 @@
+<h2 class="page-title">Internal News</h2>
+
+<div>
+<table width="100%" border="1">
+	<tr>
+		<th>ID</th>
+		<th>User</th>
+		<th>Subject</th>
+		<th>Text</th>
+		<th></th>
+	</td>
+  <tr ng-repeat="x in memos">
+	<td>{{ x.ID }}</td>
+    <td>{{ x.User }}</td>
+	<td>{{ x.Subject }}
+    <td>{{ x.Text }}</td>
+	<td><a href="#/internal/{{x.ID}}">View</a></td>
+  </tr>
+</table>
+<br />
+<a href="#/internal-create">Create Internal News</a>
+</div>
