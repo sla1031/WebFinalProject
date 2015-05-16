@@ -7,9 +7,11 @@
 		ng-model-options="{ updateOn: 'blur' }"
 		ng-minlength="8"
 		ng-maxlength="150"
+		ng-pattern="/^[a-z ,.'-]+ [a-z ,.'-]+$/i"
 		required>
 		<div ng-show="editPersonnel.name.$error.required && editPersonnel.$touched">Name is required.</div>
 		<div ng-show="editPersonnel.name.$error.minlength || editPersonnel.Name.$error.maxlength">Name must be between 8 and 150 characters.</div>
+		<div ng-show="editPersonnel.name.$error.pattern">First and last name must be entered.</div>
 		
 		<br />
 		
