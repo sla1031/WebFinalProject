@@ -64,6 +64,7 @@ app.controller('viewPersonnelCtrl', function($scope, $http, Notification, $route
 			$http.get($createURL)
 			.success(function() {
 				Notification.success({message: 'Personnel Updated.', delay: 3000});
+				$scope.editPersonnel.$setPristine();
 			});
 		}
 		else {
