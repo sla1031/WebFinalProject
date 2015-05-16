@@ -15,7 +15,7 @@ parse_str($parts['query'], $data);
 $user = $data['user'];
 
 
- $conn = mysqli_connect("localhost", $dbuser, $dbpass, $dbuser);
+ $conn = mysqli_connect("localhost", $dbuser, $dbpass, $db);
  echo  ($conn ? "" : "Connection NOT established.<br />\n");
 $selectStmt = mysqli_stmt_init($conn);
 
