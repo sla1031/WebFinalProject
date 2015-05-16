@@ -17,7 +17,10 @@ $text = $data['text'];
 
 
 
+$conn = mysqli_connect("localhost", $dbuser, $dbpass, $db);
+echo  ($conn ? "" : "Connection NOT established.<br />\n");
 
+$insertStmt = mysqli_stmt_init($conn);
 mysqli_stmt_prepare($insertStmt, "INSERT INTO ImpCmd_Memos (Subject, MemoText) VALUES (?,?)");
 if ($insertStmt){
 	mysqli_stmt_bind_param($insertStmt, 'ss', $subject, $text);
