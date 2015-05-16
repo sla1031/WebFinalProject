@@ -1,33 +1,44 @@
 <div>
 	<h1 class="page-title">New Personnel</h1>
 	<div>
-	<form ng-submit="submit()">
+	<form name="createPersonnel" ng-submit="submit(createPersonnel.$valid)" novalidate>
+		<!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+		
 		<label for="name">Name</label>
-		<input type="text" id="name" ng-model="user.name"
-		ng-model-options="{ getterSetter: true }"/> 
+		<input type="text" name="name" class="form-control" ng-model="user.name" 
+		ng-model-options="{ updateOn: 'blur' }"
+		ng-minlength="8"
+		ng-maxlength="150"
+		required>
+		<div ng-show="createPersonnel.Name.$error.required">Name is required.</div>
+		<div ng-show="editPersonnel.name.$error.minlength || editPersonnel.Name.$error.maxlength">Name must be between 8 and 150 characters.</div>
 		
 		<br />
 		
 		<label for="title">Title</label>
 		<input type="text" id="title" ng-model="user.title"
-		ng-model-options="{ getterSetter: true }"/>
+		ng-model-options="{ updateOn: 'blur' }"
+		required/>
 		
 		<br />
 		
 		<label for="department">Department</label>
 		<input type="text" id="department" ng-model="user.department"
-		ng-model-options="{ getterSetter: true }"/>
+		ng-model-options="{ updateOn: 'blur' }"
+		required/>
 		
 		<br />
 		
 		<label for="wage">Wage</label>
-		<input type="text" id="wage" ng-model="user.wage"
-		ng-model-options="{ getterSetter: true }"/>
+		$<input type="text" id="wage" ng-model="user.wage"
+		ng-model-options="{ updateOn: 'blur' }"
+		ng-pattern="/^\d+\.\d{2}$/" 
+		required/>
 		
 		<br /><br />
 		
 		
-		<input id="submit" type="submit" value="Submit"/>
+		<input id="submit" type="submit" value="Submit" ng-disabled="createPersonnel.$invalid || createPersonnel.$pristine"/>
 		
 	</form
 </div>

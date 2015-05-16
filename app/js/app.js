@@ -21,52 +21,17 @@ app.controller('intNewsCtrl', function($scope, $http) {
 
 
 app.controller('createPersonnelCtrl', function($scope, $http, Notification){
-	
-	var _name = "";
-	var _title = "";
-	var _department = "";
-	var _wage = "";
-	$scope.user = {
-	    name: function(newName) {
-	      if (angular.isDefined(newName)) {
-	        _name = newName;
-	      }
-	      return _name;
-	    },
-	
-		title: function(newTitle) {
-	      if (angular.isDefined(newTitle)) {
-	        _title = newTitle;
-	      }
-	      return _title;
-	    },
-		department: function(newDepartment) {
-	      if (angular.isDefined(newDepartment)) {
-	        _department = newDepartment;
-	      }
-	      return _department;
-	    },
-	
-		wage: function(newWage) {
-	      if (angular.isDefined(newWage)) {
-	        _wage = newWage;
-	      }
-	      return _wage;
-	    },
-	
-	  };
 
 	
-	$scope.submit = function() {
-		if($scope.user.name()  != ""){
-			$createURL = $phpPath + "users/createUser.php?name=" + $scope.user.name() + "&title=" + $scope.user.title() + "&department=" + $scope.user.department() + "&wage=" + $scope.user.wage();
+	$scope.submit = function(isValid) {
+		if(isValid){
+			$createURL = $phpPath + "users/createUser.php?name=" + $scope.user.name + "&title=" + $scope.user.title + "&department=" + $scope.user.department + "&wage=" + $scope.user.wage;
 			$http.get($createURL)
 			.success(function() {
 				Notification.success({message: 'Personnel added.', delay: 3000});
-				_name = "";
-				_title = "";
-				_department = "";
-				_wage = "";	
+				$scope.user = {};
+				$scope.createPersonnel.$setPristine();
+				
 				});
 		}
 		else {
@@ -79,55 +44,23 @@ app.controller('createPersonnelCtrl', function($scope, $http, Notification){
 
 app.controller('viewPersonnelCtrl', function($scope, $http, Notification, $routeParams){
 	$scope.param = $routeParams.param;
-	var _name;
-	var _title;
-	var _department;
-	var _wage;
 	
 	$scope.url = $phpPath + "users/getUser.php?user=" + $scope.param;
 	$http.get($scope.url)
     .success(function (response) {
 	$scope.users = response.records;
-		_name = $scope.users[0].name;
-		_title = $scope.users[0].title;
-		_department = $scope.users[0].department;
-		_wage = $scope.users[0].wage;
+	$scope.user ={
+		name: $scope.users[0].name,
+		title: $scope.users[0].title,
+		department: $scope.users[0].department,
+		wage: $scope.users[0].wage
+	}
 	});
 	
-	$scope.user = {
-	    name: function(newName) {
-	      if (angular.isDefined(newName)) {
-	        _name = newName;
-	      }
-	      return _name;
-    	},
 
-		title: function(newTitle) {
-	      if (angular.isDefined(newTitle)) {
-	        _title = newTitle;
-	      }
-	      return _title;
-	    },
-		department: function(newDepartment) {
-	      if (angular.isDefined(newDepartment)) {
-	        _department = newDepartment;
-	      }
-	      return _department;
-	    },
-
-		wage: function(newWage) {
-	      if (angular.isDefined(newWage)) {
-	        _wage = newWage;
-	      }
-	      return _wage;
-	    }
-
-	};
-
-
-	$scope.submit = function() {
-		if($scope.user.name()  != ""){
-			$createURL = $phpPath + "users/updateUser.php?name=" + $scope.user.name() + "&title=" + $scope.user.title() + "&department=" + $scope.user.department() + "&wage=" + $scope.user.wage() + "&id=" + $scope.param;
+	$scope.submit = function(isValid) {
+		if(isValid){
+			$createURL = $phpPath + "users/updateUser.php?name=" + $scope.user.name + "&title=" + $scope.user.title + "&department=" + $scope.user.department + "&wage=" + $scope.user.wage + "&id=" + $scope.param;
 			$http.get($createURL)
 			.success(function() {
 				Notification.success({message: 'Personnel Updated.', delay: 3000});
