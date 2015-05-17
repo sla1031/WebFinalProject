@@ -11,8 +11,8 @@
 		ng-maxlength="150"
 		ng-pattern="/^[a-z ,.'-]+ [a-z ,.'-]+$/i"
 		required>
-		<div ng-show="createPersonnel.name.$error.required">Name is required.</div>
-		<div ng-show="createPersonnel.name.$error.minlength || createPersonnel.Name.$error.maxlength">Name must be between 8 and 150 characters.</div>
+		<div ng-show="createPersonnel.name.$error.required && createPersonnel.name.$touched">Name is required.</div>
+		<div ng-show="(createPersonnel.name.$error.minlength || createPersonnel.name.$error.maxlength) && createPersonnel.name.$touched">Name must be between 8 and 150 characters.</div>
 		<div ng-show="createPersonnel.name.$error.pattern">First and last name must be entered.</div>
 		
 		<br />
@@ -21,7 +21,7 @@
 		<input type="text" id="title" name="title" ng-model="user.title"
 		ng-model-options="{ updateOn: 'blur' }"
 		required/>
-		<div ng-show="createPersonnel.title.$error.required">Title is required.</div>
+		<div ng-show="createPersonnel.title.$error.required && createPersonnel.title.$touched">Title is required.</div>
 		
 		<br />
 		
@@ -29,7 +29,7 @@
 		<input type="text" id="department" name="department" ng-model="user.department"
 		ng-model-options="{ updateOn: 'blur' }"
 		required/>
-		<div ng-show="createPersonnel.department.$error.required">Department is required.</div>
+		<div ng-show="createPersonnel.department.$error.required && createPersonnel.department.$touched">Department is required.</div>
 		
 		<br />
 		
@@ -38,7 +38,7 @@
 		ng-model-options="{ updateOn: 'blur' }"
 		ng-pattern="/^\d+\.\d{2}$/" 
 		required/>
-		<div ng-show="createPersonnel.wage.$error.required">Wage is required.</div>
+		<div ng-show="createPersonnel.wage.$error.required && createPersonnel.wage.$touched">Wage is required.</div>
 		
 		<br /><br />
 		
