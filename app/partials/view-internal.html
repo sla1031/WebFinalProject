@@ -3,28 +3,25 @@
 	<div>
 	<form ng-submit="submit()">
 		<label for="user">User</label>
-		<span  id="user" ng-bind="user"></span>
+		<span  id="user" ng-bind="memo.user"></span>
 		
 		<br />
 		
 		<label for="datePublished">Date Published</label>
-		<span  id="datePublished" ng-bind="datePublished"></span>
+		<span  id="datePublished" ng-bind="memo.datePublished"></span>
 		
 		<br />
 		
 		<label for="subject">Subject</label>
-		<input type="text" id="subject" ng-model="memo.subject"
-		ng-model-options="{ getterSetter: true }"/>
+		<span type="text" id="subject" ng-bind="memo.subject"></span>
 		
 		<br />
 		
 		<label for="message">Message</label><br />
-		<textarea id="message" ng-model="memo.text"
-		ng-model-options="{ getterSetter: true }"></textarea>
+		<div id="message" ng-bind="memo.text"></div>
 		
 		<br />
 
-		<input id="submit" type="submit" value="Submit"/>
 		
-	</form
+	</form>
 </div>

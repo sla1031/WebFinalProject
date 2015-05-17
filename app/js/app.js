@@ -77,80 +77,35 @@ app.controller('viewPersonnelCtrl', function($scope, $http, Notification, $route
 
 app.controller('viewInternalCtrl', function($scope, $http, Notification, $routeParams){
 	$scope.param = $routeParams.param;
-	$scope.user;
-	$scope.datePublished;
-	var _subject;
-	var _text;
+
 
 	$scope.url = $phpPath + "memos/getMemo.php?memo=" + $scope.param;
 	$http.get($scope.url)
     .success(function (response) {
 	$scope.memos = response.records;
-		$scope.user= $scope.memos[0].user;
-		$scope.datePublished= $scope.memos[0].datePublished;
-		_subject = $scope.memos[0].subject;
-		_text = $scope.memos[0].text;
+	
+	$scope.memo ={
+		user: $scope.memos[0].user,
+		datePublished: $scope.memos[0].datePublished,
+		subject: $scope.memos[0].subject,
+		text: $scope.memos[0].text
+	}
 	});
 
-	$scope.memo = {
-	    subject: function(newSubject) {
-	      if (angular.isDefined(newSubject)) {
-	        _subject = newSubject;
-	      }
-	      return _subject;
-    	},
-		text: function(newText) {
-		  if (angular.isDefined(newText)) {
-		    _text = newText;
-		  }
-		  return _text;
-		}
 
-	};
-
-
-	$scope.submit = function() {
-		if($scope.memo.text()  != ""){
-			$createURL = $phpPath + "memos/updateMemo.php?subject=" + $scope.memo.subject() + "&text=" + $scope.memo.text() + "&id=" + $scope.param;
-			$http.get($createURL)
-			.success(function() {
-				Notification.success({message: 'Memo Updated.', delay: 3000});
-			});
-		}
-		else {
-			Notification.error({message: 'Invalid Data.', delay: 3000});
-		}
-
-	};
 	
 });
 
 
 
 app.controller('createInternalCtrl', function($scope, $http, Notification){
-	
-	var _subject = "";
-	var _text = "";
-	$scope.memo = {
-	    subject: function(newSubject) {
-	      if (angular.isDefined(newSubject)) {
-	        _subject = newSubject;
-	      }
-	      return _subject;
-    	},
-		text: function(newText) {
-		  if (angular.isDefined(newText)) {
-		    _text = newText;
-		  }
-		  return _text;
-		}
 
-	};
+	$scope.memo = {};
 
 	
-	$scope.submit = function() {
-		if($scope.memo.text()  != ""){
-			$createURL = $phpPath + "memos/createMemo.php?subject=" + $scope.memo.subject() + "&text=" + $scope.memo.text();
+	$scope.submit = function(isValid) {
+		if(isValid){
+			$createURL = $phpPath + "memos/createMemo.php?subject=" + $scope.memo.subject + "&text=" + $scope.memo.text;
 			$http.get($createURL)
 			.success(function() {
 				Notification.success({message: 'Internal News added.', delay: 3000});

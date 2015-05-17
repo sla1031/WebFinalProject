@@ -1,20 +1,27 @@
 <div>
 	<h1 class="page-title">View Internal News</h1>
 	<div>
-	<form ng-submit="submit()">
+	<form ng-submit="submit(createInternal.$valid)" name="createInternal" novalidate>
 		<label for="subject">Subject</label>
-		<input type="text" id="subject" ng-model="memo.subject"
-		ng-model-options="{ getterSetter: true }"/>
-		
+		<input type="text" id="subject" name="subject" 
+		ng-model="memo.subject"
+		ng-model-options="{ updateOn: 'blur' }"
+		required/>
+		<div ng-show="createInternal.subject.$error.required && createInternal.subject.$touched">Subject is required.</div>
 		<br />
 		
 		<label for="message">Message</label><br />
-		<textarea id="message" ng-model="memo.text"
-		ng-model-options="{ getterSetter: true }"></textarea>
+		<textarea id="message" name="message" 
+		ng-model="memo.text"
+		ng-model-options="{ updateOn: 'blur' }"
+		required>
+		</textarea>
+		
+		<div ng-show="createInternal.message.$error.required && createInternal.message.$touched">Message is required.</div>
 		
 		<br />
 
-		<input id="submit" type="submit" value="Submit"/>
+			<input id="submit" type="submit" value="Submit" ng-disabled="createInternal.$invalid || createInternal.$pristine"/>
 		
-	</form
+	</form>
 </div>
