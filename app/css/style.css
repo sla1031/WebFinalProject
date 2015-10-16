@@ -1,7 +1,26 @@
 body {
-	background: black url("img/space.jpg") repeat top left;
+	background: #000 url("img/space.jpg") repeat center center;
 }
 
 #wrapper {
-	background-color: white;	
+	background-color: white;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
+
+nav {
+	margin-top: 10px;
+}
+
+td, th {
+    padding: 5px;
+}
+
+.pull-left {
+	margin: 0 10px 10px 0;
+}
+
+.pull-right {
+	margin: 0 0 10px 10px;
+}
+

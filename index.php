@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html ng-app="imperialCommandApp">
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Imperial Command</title>
 	
 	<!--angular app-->
 	<script type="text/javascript" src="app/js/angular.js"></script>
 	<script type="text/javascript" src="app/js/angular-route.min.js"></script>
+	<script type="text/javascript" src="app/js/ui-bootstrap-0.14.2.min.js"></script>
 	<script type="text/javascript" src="app/js/app.js"></script>
 	<script type="text/javascript" src="app/js/states.js"></script>
-	<link rel="stylesheet" href="app/css/structure.css" />
 	<link rel="stylesheet" href="app/css/style.css" />
+	<link rel="stylesheet" href="app/css/bootstrap.min.css" />
 	
 	<!--feed reader-->
 	<!--http://siddii.github.io/angular-feeds/app/-->
@@ -20,64 +24,48 @@ src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3
 	
 	<!--Notifications -->
 	<script src="app/js/angular-ui-notification.min.js"></script>  
-    <link rel="stylesheet" href="app/css/angular-csp.css">
-    <link rel="stylesheet" href="app/css/angular-ui-notification.min.css">
+	<link rel="stylesheet" href="app/css/angular-csp.css">
+	<link rel="stylesheet" href="app/css/angular-ui-notification.min.css">
 	
-	<!--menu-->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-
-	<!-- adapt -->
-	<noscript>
-	<link rel="stylesheet" href="app/css/adapt/mobile.min.css" />
 	</noscript>
-	<script>
-	// Edit to suit your needs.
-	var ADAPT_CONFIG = {
-	  // Where is your CSS?
-	  path: 'app/css/adapt/',
-	
-	  // false = Only run once, when page first loads.
-	  // true = Change on window resize and page tilt.
-	  dynamic: true,
-	
-	  // First range entry is the minimum.
-	  // Last range entry is the maximum.
-	  // Separate ranges by "to" keyword.
-	  range: [
-	    '0px    to 760px  = mobile.min.css',
-	    '760px  to 980px  = 720.min.css',
-	    '980px  to 1280px = 960.min.css',
-	    '1280px to 1600px = 1200.min.css',
-	    '1600px to 1940px = 1560.min.css',
-	    '1940px to 2540px = 1920.min.css',
-	    '2540px           = 2520.min.css'
-	  ]
-	};
-	</script>
-	<script src="app/js/adapt.min.js"></script>
-	
 	
 </head>
 <body ng-controller="CommandController as cmd">
-<div class="container_12">
-	<div id="wrapper" class="grid_12">
-		<div id="nav">
-			<label for="toggle-mobile-menu">&#9776; Menu</label>
-			<input id="toggle-mobile-menu" type="checkbox"/>
-			<ul>	
+
+
+
+
+
+<div id="wrapper" class="container">
+	 <nav class="navbar navbar-inverse">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!--<a class="navbar-brand" href="#">Project name</a>-->
+		</div>
+		<div class="collapse navbar-collapse" uib-collapse="navCollapsed">
+			<ul class="nav navbar-nav">
 				<li><a href="#/">Home</a></li>
 				<li><a href="#/news">Galactic News</a></li>
 				<li><a href="#/internal">Internal News</a></li>
 				<li><a href="#/personnel">Personnel Management</a></li>
 			</ul>
-		</div>
-		<div id="content" ng-view>
-		
-		</div>
-		<div id="footer">
-			
-		</div>
+		</div><!--/.nav-collapse -->
+	</nav>
+	
+	<div id="content" class="col-xs-12" ng-view>
+	
 	</div>
+	<div id="footer">
+		
+	</div>
+
 </div>
+
+
 </body>
 </html>

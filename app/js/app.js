@@ -1,4 +1,5 @@
-var app = angular.module('imperialCommandApp', ['ngRoute','feeds','ui-notification']);
+var app = angular.module('imperialCommandApp', ['ngRoute','feeds','ui-notification','ui.bootstrap']);
+
 
 app.controller('CommandController', [function(){
 	$phpPath = "https://php.radford.edu/~sashley2/itec425/php/";
